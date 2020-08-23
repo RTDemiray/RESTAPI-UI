@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Doğruyu Bul | Yönetim Paneli</title>
+
+    <!-- Favicon-->
+    <link rel="icon" href="#" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="css/themes/all-themes.css" rel="stylesheet" />
+
+    <!-- Bootstrap Core Css -->
+    <link href="Plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="Plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="Plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+
+    
+    
+
+    <style>
+        div.slimScrollBar {
+            width: 25px !important;
+        }
+    </style>
+</head>
+<body class="theme-cyan">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-cyan">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Yükleniyor ...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="#">DOĞRUYU BUL - YÖNETİM PANELİ </a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="images/user.png" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</div>
+                    <div class="email">Recep Tayyip Demiray</div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">Menü</li>
+                    <li class="active">
+                        <a href="index.html">
+                            <i class="material-icons">home</i>
+                            <span>Anasayfa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="kategoriler.html">
+                            <i class="material-icons">format_list_bulleted</i>
+                            <span>Kategoriler</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sorular.html">
+                            <i class="material-icons">question_answer</i>
+                            <span>Sorular</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(exit())">
+                            <i class="material-icons">power_settings_new</i>
+                            <span>Güvenli Çıkış</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2020 <a href="javascript:void(0);">Tüm Haklar Saklıdır !!!</a>.
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <h2>ANASAYFA</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                İSTATİSTİKLER
+                                <small>2020</small>
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div id="global_count" class="row clearfix">
+                                <img v-if="isLoad" src="images/loading.gif" width="300px" style="margin-left: 450px">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" v-if="!isLoad">
+                                        <div class="info-box bg-orange hover-expand-effect">
+                                            <div class="icon">
+                                                <i class="material-icons">equalizer</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">TOPLAM SORU SAYISI</div>
+                                                <div class="number count-to" data-from="0" v-bind:data-to="questionsCount" data-speed="1000" data-fresh-interval="20">{{questionsCount}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" v-if="!isLoad">
+                                        <div class="info-box bg-cyan hover-expand-effect">
+                                            <div class="icon">
+                                                <i class="material-icons">trending_up</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">TOPLAM KATEGORİ SAYISI</div>
+                                                <div class="number count-to" data-from="0" v-bind:data-to="categoriesCount" data-speed="1000" data-fresh-interval="20">{{categoriesCount}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" v-if="!isLoad">
+                                        <div class="info-box bg-light-green hover-expand-effect">
+                                            <div class="icon">
+                                                <i class="material-icons">supervisor_account</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">TOPLAM SKOR SAYISI</div>
+                                                <div class="number count-to" data-from="0" v-bind:data-to="scoresCount" data-speed="1000" data-fresh-interval="20">{{scoresCount}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" v-if="!isLoad">
+                                        <div class="info-box bg-pink hover-expand-effect">
+                                            <div class="icon">
+                                                <i class="material-icons">perm_identity</i>
+                                            </div>
+                                            <div class="content">
+                                                <div class="text">TOPLAM KULLANICI SAYISI</div>
+                                                <div class="number count-to" data-from="0" v-bind:data-to="usersCount" data-speed="1000" data-fresh-interval="20">{{usersCount}}</div>
+                                            </div>
+                                        </div>
+                                    </div>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Jquery Core Js yeni -->
+    <script src="Plugins/jquery/jquery.min.js"></script>
+
+    <!-- Vue Js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="js/global.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
+    <!-- Jquery SlimScroll Plugin Js -->
+    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- SweetAlert2 Js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <script src="js/pages/ui/dialogs.js"></script>
+    <script src="js/pages/ui/modals.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="js/pages/index.js"></script>
+
+    <!-- Popper Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" type="text/javascript"></script>
+</body>
+</html>
